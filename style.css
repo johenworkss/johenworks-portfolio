@@ -1012,11 +1012,11 @@ footer .theme-toggle {
 
 .hero__image {
   position: absolute;
-  top: 120px;
+  top: 80px;
   left: 50%;
   translate: -50%;
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
@@ -1061,7 +1061,7 @@ footer .theme-toggle {
 .hero__text {
   position: relative;
   text-align: center;
-  margin-block-start: clamp(16rem, 52vw, 26rem);
+  margin-block-start: clamp(12rem, 40vw, 18rem);
   padding-inline: var(--space-md);
   max-width: 36rem;
   margin-inline: auto;
@@ -1536,7 +1536,7 @@ h1 > span {
 /* STATS */
 
 .stats {
-  padding: var(--space-xl) 0 var(--space-lg);
+  padding: var(--space-md) 0 var(--space-sm);
   background: transparent;
   position: relative;
   margin-top: auto;
@@ -1555,7 +1555,7 @@ h1 > span {
   flex-direction: column;
   align-items: center;
   gap: var(--space-xs);
-  padding: var(--space-lg) var(--space-md);
+  padding: var(--space-md) var(--space-sm);
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 12px;
@@ -1572,7 +1572,7 @@ h1 > span {
 }
 
 .stats__number {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
@@ -1596,7 +1596,7 @@ h1 > span {
 }
 
 .stats__label {
-  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  font-size: clamp(0.6rem, 1.5vw, 0.75rem);
   color: var(--text2);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -1605,30 +1605,30 @@ h1 > span {
 
 @media (min-width: 37.5em) {
   .stats {
-    padding: 80px 0;
+    padding: 40px 0;
   }
 
   .stats__wrapper {
     grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    gap: 20px;
   }
 
   .stats__item {
-    padding: 32px 24px;
+    padding: 20px 16px;
   }
 }
 
 @media (min-width: 62.5em) {
   .stats {
-    padding: 100px 0;
+    padding: 48px 0;
   }
 
   .stats__wrapper {
-    gap: 40px;
+    gap: 24px;
   }
 
   .stats__item {
-    padding: 40px 32px;
+    padding: 24px 20px;
   }
 }
 
@@ -2507,9 +2507,9 @@ footer .wrapper {
   }
 
   .hero__image {
-    top: clamp(5.25rem, 17vw, 7.25rem);
-    width: clamp(7.25rem, 26vw, 9.25rem);
-    height: clamp(7.25rem, 26vw, 9.25rem);
+    top: clamp(4.5rem, 14vw, 6rem);
+    width: clamp(6.5rem, 22vw, 8rem);
+    height: clamp(6.5rem, 22vw, 8rem);
   }
 
   .hero__headline {
