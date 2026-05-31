@@ -86,16 +86,30 @@
 }
 
 /* Smooth theme transition */
-html.theme-transitioning,
-html.theme-transitioning *,
-html.theme-transitioning *::before,
-html.theme-transitioning *::after {
-  transition: background-color 1s cubic-bezier(0.4, 0, 0.2, 1), 
-              color 1s cubic-bezier(0.4, 0, 0.2, 1), 
-              border-color 1s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 1s cubic-bezier(0.4, 0, 0.2, 1),
-              fill 1s cubic-bezier(0.4, 0, 0.2, 1),
-              stroke 1s cubic-bezier(0.4, 0, 0.2, 1) !important;
+html.theme-transitioning body,
+html.theme-transitioning .fullpage-section,
+html.theme-transitioning .stats__item,
+html.theme-transitioning .about__card,
+html.theme-transitioning .experience__item,
+html.theme-transitioning .projects__face,
+html.theme-transitioning .contact__form,
+html.theme-transitioning .contact__control input,
+html.theme-transitioning .contact__control textarea,
+html.theme-transitioning .top-right-nav,
+html.theme-transitioning .header__home,
+html.theme-transitioning p,
+html.theme-transitioning h1,
+html.theme-transitioning h2,
+html.theme-transitioning h3,
+html.theme-transitioning a,
+html.theme-transitioning button,
+html.theme-transitioning .theme-toggle,
+html.theme-transitioning .fullpage-nav__dot,
+html.theme-transitioning .fullpage-nav__label {
+  transition: background-color 0.4s ease,
+              color 0.4s ease,
+              border-color 0.4s ease,
+              box-shadow 0.4s ease !important;
 }
 
 /* PAGE LOADER */
@@ -466,7 +480,8 @@ button.loading::before {
   transform: translate3d(0, 32px, 0);
   transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
               transform 600ms cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 0s linear 600ms;
+              visibility 0s linear 600ms,
+              background-color 0.4s ease;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1;
@@ -934,12 +949,21 @@ footer .theme-toggle {
 }
 
 .header__social > svg > path {
-  fill: var(--text1);
+  fill: currentColor;
   transition: fill var(--transition);
 }
 
 .header__social:hover > svg > path {
   fill: var(--accent);
+}
+
+.header__social {
+  color: var(--text1);
+  transition: color var(--transition);
+}
+
+.header__social:hover {
+  color: var(--accent);
 }
 
 @media (min-width: 37.5em) {

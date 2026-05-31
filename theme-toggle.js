@@ -65,10 +65,10 @@ class ThemeToggle {
     
     console.log('🎨 Theme switched to:', newTheme);
     
-    // Remove transition class after animation (1000ms to match CSS)
+    // Remove transition class after animation (400ms to match CSS)
     setTimeout(() => {
       document.documentElement.classList.remove('theme-transitioning');
-    }, 1000);
+    }, 400);
   }
 
   updateToggleButton() {
