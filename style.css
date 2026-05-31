@@ -1548,6 +1548,7 @@ h1 > span {
   transform: translateZ(0);
   backface-visibility: hidden;
   overflow: hidden;
+  padding-top: var(--space-xl);
 }
 
 .skills__wrapper {
@@ -1557,7 +1558,7 @@ h1 > span {
   padding-block: var(--space-md) var(--space-lg);
   transform: translateZ(0);
   width: 100%;
-  margin-top: -2rem;
+  margin-top: 0;
 }
 
 .skills__headline {
@@ -1613,8 +1614,8 @@ h1 > span {
   .skills__wrapper {
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
-    padding-block: 32px 0;
-    margin-top: -3rem;
+    padding-block: 20px 0;
+    margin-top: 0;
   }
 }
 
@@ -1622,8 +1623,8 @@ h1 > span {
   .skills__wrapper {
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
-    padding-block-start: 48px;
-    margin-top: -4rem;
+    padding-block-start: 32px;
+    margin-top: 0;
   }
 }
 
