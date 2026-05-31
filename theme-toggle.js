@@ -62,6 +62,11 @@ class ThemeToggle {
     this.applyTheme(newTheme);
     this.storeTheme(newTheme);
     this.updateToggleButton();
+
+    // Force repaint on all fullpage sections so background-color var updates
+    document.querySelectorAll('.fullpage-section').forEach(el => {
+      el.style.backgroundColor = '';
+    });
     
     console.log('🎨 Theme switched to:', newTheme);
     
