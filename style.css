@@ -89,7 +89,6 @@
 /* Smooth theme transition */
 html.theme-transitioning body,
 html.theme-transitioning .fullpage-section,
-html.theme-transitioning .stats__item,
 html.theme-transitioning .about__card,
 html.theme-transitioning .experience,
 html.theme-transitioning .experience__item,
@@ -112,8 +111,6 @@ html.theme-transitioning button,
 html.theme-transitioning .theme-toggle,
 html.theme-transitioning .fullpage-nav__dot,
 html.theme-transitioning .fullpage-nav__label,
-html.theme-transitioning .stats__label,
-html.theme-transitioning .stats__number,
 html.theme-transitioning .skills__title,
 html.theme-transitioning .projects__name,
 html.theme-transitioning .projects__summary,
@@ -1194,14 +1191,15 @@ h1 > span {
 
   .hero__content picture {
     order: 2;
+    flex-shrink: 0;
   }
 
   .hero__image {
     position: relative;
-    width: min(28vw, 220px);
-    height: min(28vw, 220px);
-    max-width: 220px;
-    max-height: 220px;
+    width: min(42vw, 340px);
+    height: min(42vw, 340px);
+    max-width: 340px;
+    max-height: 340px;
     object-fit: cover;
     left: auto;
     right: 0;
@@ -1273,8 +1271,8 @@ h1 > span {
 
   .hero__image {
     margin-block-start: 0;
-    max-width: 260px;
-    max-height: 260px;
+    max-width: 380px;
+    max-height: 380px;
   }
 
   .hero__rings {
@@ -1531,105 +1529,6 @@ h1 > span {
 
   .experience {
     padding-block: 100px;
-  }
-}
-
-/* STATS */
-
-.stats {
-  padding: var(--space-sm) 0 var(--space-sm);
-  background: transparent;
-  position: relative;
-  margin-top: auto;
-  width: 100%;
-}
-
-.stats__wrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
-  text-align: center;
-}
-
-.stats__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-xs);
-  padding: var(--space-md) var(--space-sm);
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.stats__item:hover {
-  transform: translateY(-4px);
-  background: var(--card-hover-bg);
-  border-color: rgba(78, 255, 166, 0.2);
-  box-shadow: 0 8px 24px var(--shadow-color);
-}
-
-.stats__number {
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  transition: transform 0.3s ease;
-}
-
-
-
-@keyframes pulseGlow {
-  0%, 100% {
-    text-shadow: none;
-  }
-  50% {
-    text-shadow: none;
-  }
-}
-
-.stats__item:hover .stats__number {
-  transform: scale(1.05);
-}
-
-.stats__label {
-  font-size: clamp(0.6rem, 1.5vw, 0.75rem);
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-}
-
-@media (min-width: 37.5em) {
-  .stats {
-    padding: 20px 0;
-  }
-
-  .stats__wrapper {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  .stats__item {
-    padding: 20px 16px;
-  }
-}
-
-@media (min-width: 62.5em) {
-  .stats {
-    padding: 24px 0;
-  }
-
-  .stats__wrapper {
-    gap: 24px;
-  }
-
-  .stats__item {
-    padding: 24px 20px;
   }
 }
 
@@ -2559,19 +2458,6 @@ footer .wrapper {
 
 /* Small phones */
 @media (max-width: 22.5em) {
-  .stats__wrapper {
-    gap: var(--space-sm);
-  }
-
-  .stats__item {
-    padding: var(--space-md) var(--space-sm);
-  }
-
-  .stats__label {
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
-  }
-
   .header__home-lottie {
     width: 100px;
     height: 100px;
