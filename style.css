@@ -1187,7 +1187,8 @@ h1 > span {
   .hero__content {
     display: flex;
     align-items: flex-start;
-    gap: var(--space-xl);
+    gap: var(--space-md);
+    justify-content: center;
   }
 
   .hero__content picture {
@@ -1227,7 +1228,8 @@ h1 > span {
   .hero__text {
     margin-block-start: 0;
     margin-right: 0;
-    flex: 1 0 52%;
+    flex: 0 1 auto;
+    max-width: 400px;
     text-align: left;
     z-index: 1;
     padding-inline: 0;
@@ -1263,7 +1265,8 @@ h1 > span {
 
   .hero__content {
     align-items: flex-start;
-    gap: var(--space-2xl);
+    gap: var(--space-lg);
+    justify-content: center;
   }
 
   .hero__content picture {
@@ -1291,7 +1294,8 @@ h1 > span {
   .hero__text {
     margin-block-start: 0;
     margin-right: 0;
-    flex: 1;
+    flex: 0 1 auto;
+    max-width: 450px;
   }
 
   .hero__headline {
