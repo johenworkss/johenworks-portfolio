@@ -1189,6 +1189,7 @@ h1 > span {
     align-items: flex-start;
     gap: var(--space-md);
     justify-content: center;
+    margin-top: -4rem;
   }
 
   .hero__content picture {
@@ -1267,6 +1268,7 @@ h1 > span {
     align-items: flex-start;
     gap: var(--space-lg);
     justify-content: center;
+    margin-top: -5rem;
   }
 
   .hero__content picture {
