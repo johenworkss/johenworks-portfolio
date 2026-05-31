@@ -1554,9 +1554,10 @@ h1 > span {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-sm);
-  padding-block: var(--space-lg);
+  padding-block: var(--space-md) var(--space-lg);
   transform: translateZ(0);
   width: 100%;
+  margin-top: -2rem;
 }
 
 .skills__headline {
@@ -1564,6 +1565,7 @@ h1 > span {
   text-align: center;
   margin-block-end: var(--space-lg);
   height: auto;
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
 .skills__item {
@@ -1611,7 +1613,8 @@ h1 > span {
   .skills__wrapper {
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
-    padding-block: 52px 0;
+    padding-block: 32px 0;
+    margin-top: -3rem;
   }
 }
 
@@ -1619,7 +1622,8 @@ h1 > span {
   .skills__wrapper {
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
-    padding-block-start: 72px;
+    padding-block-start: 48px;
+    margin-top: -4rem;
   }
 }
 
