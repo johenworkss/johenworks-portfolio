@@ -1185,13 +1185,14 @@ h1 > span {
 
   .hero__content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-xl);
   }
 
   .hero__content picture {
     order: 2;
     flex-shrink: 0;
+    margin-top: -3rem;
   }
 
   .hero__image {
@@ -1223,7 +1224,7 @@ h1 > span {
   }
 
   .hero__text {
-    margin-block-start: var(--space-md);
+    margin-block-start: 0;
     margin-right: 0;
     flex: 1 0 52%;
     text-align: left;
@@ -1260,13 +1261,14 @@ h1 > span {
   }
 
   .hero__content {
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-2xl);
   }
 
   .hero__content picture {
     margin-left: 0;
     flex-shrink: 0;
+    margin-top: -4rem;
   }
 
   .hero__image {
