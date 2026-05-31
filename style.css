@@ -431,9 +431,9 @@ button.loading::before {
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
   transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
   mix-blend-mode: normal;
+  will-change: transform;
 }
 
 @media (max-width: 768px) {
@@ -458,8 +458,8 @@ button.loading::before {
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
-  transform: translate(-50%, -50%);
   transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+  will-change: transform;
 }
 
 .custom-cursor-dot.cursor-hover {
@@ -476,9 +476,9 @@ button.loading::before {
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
-  transform: translate(-50%, -50%);
   opacity: 0.6;
   transition: opacity 0.1s ease;
+  will-change: transform, opacity;
 }
 
 /* FULLPAGE NAVIGATION */
@@ -1017,8 +1017,9 @@ footer .theme-toggle {
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  animation: float 3s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform;
 }
 
 .hero__image:hover {
@@ -1650,8 +1651,6 @@ h1 > span {
   border-radius: 12px;
   overflow: hidden;
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--card-border);
   box-shadow: 0 8px 32px var(--shadow-color);
   width: 100%;
@@ -1829,8 +1828,6 @@ h1 > span {
   -webkit-backface-visibility: hidden;
   border-radius: 12px;
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--card-border);
   box-shadow: 0 8px 32px var(--shadow-color);
   overflow: hidden;

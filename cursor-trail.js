@@ -1,4 +1,4 @@
-// Custom Cursor with Trailing Particles
+// Custom Cursor with Trailing Particles (Performance Optimized)
 class CursorTrail {
   constructor() {
     this.cursor = null;
@@ -8,8 +8,9 @@ class CursorTrail {
     this.mouseY = 0;
     this.cursorX = 0;
     this.cursorY = 0;
-    this.particleCount = 15;
+    this.particleCount = 8; // Reduced from 15
     this.isHovering = false;
+    this.rafId = null;
     
     this.init();
   }
@@ -32,11 +33,13 @@ class CursorTrail {
     // Main cursor circle
     this.cursor = document.createElement('div');
     this.cursor.className = 'custom-cursor';
+    this.cursor.style.willChange = 'transform';
     document.body.appendChild(this.cursor);
     
     // Cursor dot (center)
     this.cursorDot = document.createElement('div');
     this.cursorDot.className = 'custom-cursor-dot';
+    this.cursorDot.style.willChange = 'transform';
     document.body.appendChild(this.cursorDot);
   }
   
@@ -44,6 +47,7 @@ class CursorTrail {
     for (let i = 0; i < this.particleCount; i++) {
       const particle = document.createElement('div');
       particle.className = 'cursor-particle';
+      particle.style.willChange = 'transform, opacity';
       document.body.appendChild(particle);
       
       this.particles.push({
@@ -52,17 +56,22 @@ class CursorTrail {
         y: 0,
         targetX: 0,
         targetY: 0,
-        speed: 0.1 + (i * 0.01)
+        speed: 0.1 + (i * 0.015)
       });
     }
   }
   
   addEventListeners() {
-    // Track mouse movement
+    // Track mouse movement with throttling
+    let ticking = false;
     document.addEventListener('mousemove', (e) => {
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
-    });
+      
+      if (!ticking) {
+        ticking = true;
+      }
+    }, { passive: true });
     
     // Detect hoverable elements
     const hoverElements = document.querySelectorAll('a, button, .projects__item, input, textarea');
@@ -72,13 +81,13 @@ class CursorTrail {
         this.isHovering = true;
         this.cursor.classList.add('cursor-hover');
         this.cursorDot.classList.add('cursor-hover');
-      });
+      }, { passive: true });
       
       element.addEventListener('mouseleave', () => {
         this.isHovering = false;
         this.cursor.classList.remove('cursor-hover');
         this.cursorDot.classList.remove('cursor-hover');
-      });
+      }, { passive: true });
     });
     
     // Hide default cursor
@@ -93,13 +102,9 @@ class CursorTrail {
     this.cursorX += (this.mouseX - this.cursorX) * 0.15;
     this.cursorY += (this.mouseY - this.cursorY) * 0.15;
     
-    // Update main cursor position
-    this.cursor.style.left = `${this.cursorX}px`;
-    this.cursor.style.top = `${this.cursorY}px`;
-    
-    // Update cursor dot position (faster)
-    this.cursorDot.style.left = `${this.mouseX}px`;
-    this.cursorDot.style.top = `${this.mouseY}px`;
+    // Use transform instead of left/top for better performance
+    this.cursor.style.transform = `translate(${this.cursorX}px, ${this.cursorY}px) translate(-50%, -50%)`;
+    this.cursorDot.style.transform = `translate(${this.mouseX}px, ${this.mouseY}px) translate(-50%, -50%)`;
     
     // Update particles with trailing effect
     this.particles.forEach((particle, index) => {
@@ -115,9 +120,8 @@ class CursorTrail {
       particle.x += (particle.targetX - particle.x) * particle.speed;
       particle.y += (particle.targetY - particle.y) * particle.speed;
       
-      // Update particle position
-      particle.element.style.left = `${particle.x}px`;
-      particle.element.style.top = `${particle.y}px`;
+      // Use transform for better performance
+      particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px) translate(-50%, -50%)`;
       
       // Fade out particles based on distance from cursor
       const distance = Math.sqrt(
@@ -128,7 +132,16 @@ class CursorTrail {
       particle.element.style.opacity = opacity * 0.6;
     });
     
-    requestAnimationFrame(() => this.animate());
+    this.rafId = requestAnimationFrame(() => this.animate());
+  }
+  
+  destroy() {
+    if (this.rafId) {
+      cancelAnimationFrame(this.rafId);
+    }
+    this.cursor?.remove();
+    this.cursorDot?.remove();
+    this.particles.forEach(p => p.element.remove());
   }
 }
 
