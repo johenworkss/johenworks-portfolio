@@ -1183,12 +1183,13 @@ h1 > span {
   }
 
   .hero__wrapper {
-    padding-bottom: var(--space-2xl);
+    padding-bottom: var(--space-md);
   }
 
   .hero__content {
     display: flex;
     align-items: center;
+    gap: var(--space-xl);
   }
 
   .hero__content picture {
@@ -1197,10 +1198,10 @@ h1 > span {
 
   .hero__image {
     position: relative;
-    width: min(38vw, 320px);
-    height: min(38vw, 320px);
-    max-width: 320px;
-    max-height: 320px;
+    width: min(28vw, 220px);
+    height: min(28vw, 220px);
+    max-width: 220px;
+    max-height: 220px;
     object-fit: cover;
     left: auto;
     right: 0;
@@ -1224,7 +1225,7 @@ h1 > span {
   }
 
   .hero__text {
-    margin-block-start: var(--space-2xl);
+    margin-block-start: var(--space-md);
     margin-right: 0;
     flex: 1 0 52%;
     text-align: left;
@@ -1237,7 +1238,7 @@ h1 > span {
   }
 
   .hero__headline {
-    margin-block-end: var(--space-2xl);
+    margin-block-end: var(--space-md);
   }
 
   .hero__headline > br {
@@ -1257,7 +1258,7 @@ h1 > span {
 
   .hero__wrapper {
     position: relative;
-    padding-bottom: var(--space-3xl);
+    padding-bottom: var(--space-md);
   }
 
   .hero__content {
@@ -1272,8 +1273,8 @@ h1 > span {
 
   .hero__image {
     margin-block-start: 0;
-    max-width: 380px;
-    max-height: 380px;
+    max-width: 260px;
+    max-height: 260px;
   }
 
   .hero__rings {
@@ -1293,7 +1294,7 @@ h1 > span {
   }
 
   .hero__headline {
-    margin-block-end: 43px;
+    margin-block-end: var(--space-md);
   }
 
   .hero__headline > br {
@@ -1536,7 +1537,7 @@ h1 > span {
 /* STATS */
 
 .stats {
-  padding: var(--space-md) 0 var(--space-sm);
+  padding: var(--space-sm) 0 var(--space-sm);
   background: transparent;
   position: relative;
   margin-top: auto;
@@ -1605,7 +1606,7 @@ h1 > span {
 
 @media (min-width: 37.5em) {
   .stats {
-    padding: 40px 0;
+    padding: 20px 0;
   }
 
   .stats__wrapper {
@@ -1620,7 +1621,7 @@ h1 > span {
 
 @media (min-width: 62.5em) {
   .stats {
-    padding: 48px 0;
+    padding: 24px 0;
   }
 
   .stats__wrapper {
