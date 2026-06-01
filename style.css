@@ -1349,10 +1349,41 @@ h1 > span {
   flex-direction: column;
   justify-content: center;
   background-color: var(--bg-body);
-  padding-block: calc(var(--header-clearance) + var(--safe-top)) calc(var(--safe-bottom));
+  padding-block: calc(var(--header-clearance) + var(--safe-top) + var(--space-md)) calc(var(--space-lg) + var(--safe-bottom));
   padding-inline: max(var(--section-x), var(--safe-left)) max(calc(var(--section-x) + 2.5rem), var(--safe-right));
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Mobile: let content scroll, don't clip cards */
+@media (max-width: 37.4375em) {
+  .about {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    justify-content: flex-start;
+    padding-block: calc(var(--header-clearance) + var(--safe-top) + var(--space-md)) calc(var(--space-xl) + var(--safe-bottom));
+  }
+
+  .about__card {
+    padding: var(--space-md);
+    gap: 10px;
+  }
+
+  .about__card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .about__grid {
+    gap: var(--space-sm);
+  }
+
+  .about__headline {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    margin-block-end: var(--space-sm);
+  }
 }
 
 .about__wrapper {
