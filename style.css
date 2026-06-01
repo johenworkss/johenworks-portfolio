@@ -1332,6 +1332,7 @@ h1 > span {
 .about__headline {
   margin-block-end: var(--space-xl);
   text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
 .about__content {
@@ -1425,6 +1426,7 @@ h1 > span {
 .experience__headline {
   margin-block-end: var(--space-xl);
   text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
 .experience__grid {
@@ -1661,6 +1663,7 @@ h1 > span {
   grid-column: 1 / -1;
   margin-block-end: var(--space-md);
   text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
 .projects__item {
@@ -2171,6 +2174,7 @@ h1 > span {
 
 .contact__headline {
   margin-block-end: var(--fs-20);
+  font-size: clamp(2rem, 4vw, 3rem);
   background: linear-gradient(135deg, var(--accent), var(--text1), var(--accent));
   background-size: 200% auto;
   -webkit-background-clip: text;
