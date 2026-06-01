@@ -28,7 +28,7 @@ class ThemeToggle {
       // Add click event
       this.toggleBtn.addEventListener('click', () => this.toggle());
       
-      console.log('🎨 Theme toggle initialized:', this.theme);
+      console.log('Theme toggle initialized:', this.theme);
     }
   }
 

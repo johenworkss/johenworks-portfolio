@@ -8,17 +8,14 @@ class FormHandler {
     this.submitButton = this.form?.querySelector('button[type="submit"]');
 
     // EmailJS Configuration - loaded from config file
-    this.emailJSConfig = window.EMAILJS_CONFIG || {
-      serviceID: 'YOUR_SERVICE_ID',
-      templateID: 'YOUR_TEMPLATE_ID',
-      publicKey: 'YOUR_PUBLIC_KEY'
-    };
+    this.emailJSConfig = window.EMAILJS_CONFIG || null;
 
     // ── Abuse protection ──────────────────────────────────────────────────
     this.isSending = false;          // lock against concurrent/double sends
     this.COOLDOWN_MS = 60_000;       // 60s mandatory wait between submissions
     this.MAX_PER_HOUR = 3;           // max 3 messages per rolling hour
     this.STORAGE_KEY = 'contact_submissions';
+    this.emailJSInitialized = false; // init EmailJS only once
 
     this.init();
   }
@@ -57,7 +54,12 @@ class FormHandler {
 
   getSubmissions() {
     try {
-      return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]');
+      const raw = localStorage.getItem(this.STORAGE_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      // Validate: must be an array of numbers
+      if (!Array.isArray(parsed)) return [];
+      return parsed.filter(t => typeof t === 'number' && isFinite(t));
     } catch {
       return [];
     }
@@ -65,6 +67,7 @@ class FormHandler {
 
   recordSubmission() {
     const now = Date.now();
+    // Only keep timestamps within the last hour
     const recent = this.getSubmissions().filter(t => now - t < 3_600_000);
     recent.push(now);
     try {
@@ -179,7 +182,8 @@ class FormHandler {
       this.showToast('Message sent successfully! Please wait for my response.', 'success');
       this.form.reset();
     } catch (error) {
-      console.error('Error sending email:', error);
+      // Log only a generic message — never log user input
+      console.error('Email send failed:', error.message || 'Unknown error');
       await animationPromise;
       this.showToast('Failed to send message. Please try again or email me directly.', 'error');
     } finally {
@@ -194,10 +198,17 @@ class FormHandler {
     return new Promise((resolve) => {
       const overlay = document.createElement('div');
       overlay.className = 'lottie-overlay';
-      overlay.innerHTML = `
-        <div class="lottie-container" id="lottie-animation"></div>
-        <p class="lottie-text">Sending your message...</p>
-      `;
+
+      const container = document.createElement('div');
+      container.className = 'lottie-container';
+      container.id = 'lottie-animation';
+
+      const text = document.createElement('p');
+      text.className = 'lottie-text';
+      text.textContent = 'Sending your message...'; // textContent — no XSS risk
+
+      overlay.appendChild(container);
+      overlay.appendChild(text);
       document.body.appendChild(overlay);
 
       if (typeof lottie !== 'undefined') {
@@ -215,7 +226,6 @@ class FormHandler {
           setTimeout(() => { overlay.remove(); resolve(); }, 300);
         }, 4000);
       } else {
-        console.error('Lottie library not loaded');
         overlay.remove();
         resolve();
       }
@@ -225,28 +235,33 @@ class FormHandler {
   // ── EmailJS send ──────────────────────────────────────────────────────────
 
   async sendEmail() {
-    if (this.emailJSConfig.serviceID === 'YOUR_SERVICE_ID') {
-      // Demo mode — log and simulate delay
-      console.log('EmailJS not configured. Form data:', {
-        name: this.nameInput.value,
-        email: this.emailInput.value,
-        message: this.messageInput.value
-      });
+    // EmailJS not configured — fail gracefully in production, warn in dev
+    if (!this.emailJSConfig) {
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        console.warn('EmailJS not configured. Set up emailjs.config.js to enable sending.');
+      }
+      // Simulate delay so the UI flow still works during local dev
       await new Promise(resolve => setTimeout(resolve, 1500));
       return;
     }
 
-    if (typeof emailjs === 'undefined') throw new Error('EmailJS library not loaded');
+    if (typeof emailjs === 'undefined') {
+      throw new Error('EmailJS library not loaded');
+    }
 
-    emailjs.init(this.emailJSConfig.publicKey);
+    // Init only once per page load
+    if (!this.emailJSInitialized) {
+      emailjs.init(this.emailJSConfig.publicKey);
+      this.emailJSInitialized = true;
+    }
 
     await emailjs.send(
       this.emailJSConfig.serviceID,
       this.emailJSConfig.templateID,
       {
-        from_name:  this.nameInput.value,
-        from_email: this.emailInput.value,
-        message:    this.messageInput.value,
+        from_name:  this.nameInput.value.trim(),
+        from_email: this.emailInput.value.trim(),
+        message:    this.messageInput.value.trim(),
         to_name:    'Jenho Nacilla'
       }
     );
@@ -255,6 +270,7 @@ class FormHandler {
   // ── UI helpers ────────────────────────────────────────────────────────────
 
   setLoadingState(isLoading) {
+    if (!this.submitButton) return; // guard against missing button
     if (isLoading) {
       this.submitButton.disabled = true;
       this.submitButton.textContent = 'Sending...';
@@ -268,14 +284,14 @@ class FormHandler {
 
   showError(input, message) {
     const control = input.parentElement;
-    const errorElement = control.querySelector('.error-message') || this.createErrorElement();
-
-    control.classList.add('error');
-    errorElement.textContent = message;
-
-    if (!control.querySelector('.error-message')) {
+    let errorElement = control.querySelector('.error-message');
+    if (!errorElement) {
+      errorElement = this.createErrorElement();
       control.appendChild(errorElement);
     }
+
+    control.classList.add('error');
+    errorElement.textContent = message; // textContent — no XSS risk
 
     const invalidIcon = control.querySelector('.contact__invalid-icon');
     if (invalidIcon) invalidIcon.style.display = 'block';
@@ -304,14 +320,25 @@ class FormHandler {
 
     const toast = document.createElement('div');
     toast.className = `toast toast--${type}`;
-    toast.innerHTML = `
-      <div class="toast__content">
-        ${type === 'error' ? '<span class="toast__icon">✕</span>' : ''}
-        <span class="toast__message">${message}</span>
-      </div>
-    `;
 
+    const content = document.createElement('div');
+    content.className = 'toast__content';
+
+    if (type === 'error') {
+      const icon = document.createElement('span');
+      icon.className = 'toast__icon';
+      icon.textContent = '✕';
+      content.appendChild(icon);
+    }
+
+    const msg = document.createElement('span');
+    msg.className = 'toast__message';
+    msg.textContent = message; // textContent — no XSS risk
+
+    content.appendChild(msg);
+    toast.appendChild(content);
     document.body.appendChild(toast);
+
     setTimeout(() => toast.classList.add('toast--show'), 100);
     setTimeout(() => {
       toast.classList.remove('toast--show');
