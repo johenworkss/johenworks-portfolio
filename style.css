@@ -1431,7 +1431,7 @@ h1 > span {
 
 .experience {
   padding-block: var(--space-2xl);
-  background-color: var(--bg-body2);
+  background-color: var(--bg-body);
   width: 100%;
   transition: background-color 0.4s ease;
 }
