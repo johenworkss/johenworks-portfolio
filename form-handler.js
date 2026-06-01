@@ -23,6 +23,17 @@ class FormHandler {
   init() {
     if (!this.form) return;
 
+    // Startup diagnostics (dev only)
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+      if (typeof emailjs === 'undefined') {
+        console.error('[FormHandler] EmailJS library not found. Check the CDN script tag.');
+      } else if (!this.emailJSConfig) {
+        console.warn('[FormHandler] emailjs.config.js not loaded or window.EMAILJS_CONFIG not set.');
+      } else {
+        console.info('[FormHandler] EmailJS ready. Service:', this.emailJSConfig.serviceID);
+      }
+    }
+
     // Inject honeypot (invisible to humans, bots fill it in)
     this.injectHoneypot();
 
@@ -235,27 +246,26 @@ class FormHandler {
   // ── EmailJS send ──────────────────────────────────────────────────────────
 
   async sendEmail() {
-    // EmailJS not configured — fail gracefully in production, warn in dev
+    // EmailJS not configured — warn in dev, silently skip in prod
     if (!this.emailJSConfig) {
       if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
         console.warn('EmailJS not configured. Set up emailjs.config.js to enable sending.');
       }
-      // Simulate delay so the UI flow still works during local dev
       await new Promise(resolve => setTimeout(resolve, 1500));
       return;
     }
 
     if (typeof emailjs === 'undefined') {
-      throw new Error('EmailJS library not loaded');
+      throw new Error('EmailJS library not loaded. Check your internet connection.');
     }
 
-    // Init only once per page load
+    // Init only once per page load — EmailJS v4 uses object syntax
     if (!this.emailJSInitialized) {
-      emailjs.init(this.emailJSConfig.publicKey);
+      emailjs.init({ publicKey: this.emailJSConfig.publicKey });
       this.emailJSInitialized = true;
     }
 
-    await emailjs.send(
+    const result = await emailjs.send(
       this.emailJSConfig.serviceID,
       this.emailJSConfig.templateID,
       {
@@ -265,6 +275,11 @@ class FormHandler {
         to_name:    'Jenho Nacilla'
       }
     );
+
+    // EmailJS returns { status, text } — treat anything other than 200 as failure
+    if (result.status !== 200) {
+      throw new Error(`EmailJS responded with status ${result.status}: ${result.text}`);
+    }
   }
 
   // ── UI helpers ────────────────────────────────────────────────────────────
