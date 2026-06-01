@@ -827,6 +827,13 @@ svg {
 .icon-moon {
   position: absolute;
   transition: opacity 0.3s ease;
+  display: none; /* hidden by default; shown via data-theme below */
+}
+
+/* Show the correct icon based on the active theme — resolved before first paint */
+[data-theme="dark"] .icon-sun,
+[data-theme="light"] .icon-moon {
+  display: block;
 }
 
 /* Hide theme toggle in header/footer navigation */

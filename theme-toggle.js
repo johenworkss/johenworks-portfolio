@@ -74,16 +74,9 @@ class ThemeToggle {
   updateToggleButton() {
     if (!this.toggleBtn) return;
     
-    const sunIcon = this.toggleBtn.querySelector('.icon-sun');
-    const moonIcon = this.toggleBtn.querySelector('.icon-moon');
-    
     if (this.theme === 'light') {
-      sunIcon.style.display = 'none';
-      moonIcon.style.display = 'block';
       this.toggleBtn.setAttribute('aria-label', 'Switch to dark mode');
     } else {
-      sunIcon.style.display = 'block';
-      moonIcon.style.display = 'none';
       this.toggleBtn.setAttribute('aria-label', 'Switch to light mode');
     }
   }
