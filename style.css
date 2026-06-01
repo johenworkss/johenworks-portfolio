@@ -1041,6 +1041,8 @@ footer .theme-toggle {
   animation: float 6s ease-in-out infinite;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   will-change: transform;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .hero__image:hover {
