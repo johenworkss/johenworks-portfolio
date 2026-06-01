@@ -1472,6 +1472,13 @@ h1 > span {
   flex: 1;
 }
 
+/* Mobile: equal horizontal padding, allow scroll if content overflows */
+@media (max-width: 37.4375em) {
+  .fullpage-section--experience .fullpage-section__content {
+    padding-inline: max(var(--section-x), var(--safe-left)) max(var(--section-x), var(--safe-right));
+  }
+}
+
 /* WORK EXPERIENCE SECTION */
 
 .experience {
