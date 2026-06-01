@@ -2086,8 +2086,8 @@ h1 > span {
   display: grid;
   grid-template-columns: 1fr;
   justify-content: space-between;
-  gap: var(--space-2xl);
-  padding-block: var(--space-2xl) var(--space-xl);
+  gap: var(--space-lg);
+  padding-block: var(--space-lg) var(--space-md);
   padding-inline: 0;
   flex: 1;
   width: 100%;
@@ -2096,15 +2096,15 @@ h1 > span {
 @media (min-width: 37.5em) {
   .contact__wrapper {
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    padding-block: 80px 40px;
+    gap: 24px;
+    padding-block: 40px 20px;
   }
 }
 
 @media (min-width: 62.5em) {
   .contact__wrapper {
     gap: 60px;
-    padding-block: 80px 40px;
+    padding-block: 40px 20px;
   }
 }
 
@@ -2378,11 +2378,11 @@ h1 > span {
 
 @media (min-width: 62.5em) {
   .contact__wrapper {
-    padding-block: 120px 60px;
+    padding-block: 40px 20px;
   }
 
   .contact__headline {
-    margin-block-end: var(--fs-36);
+    margin-block-end: var(--fs-20);
   }
 
   .contact__rings {
@@ -2409,7 +2409,7 @@ footer .wrapper {
 
 @media (min-width: 62.5em) {
   footer {
-    padding-block: 47px 92px;
+    padding-block: 24px 40px;
   }
 }
 
