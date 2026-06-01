@@ -2460,6 +2460,16 @@ footer .wrapper {
     display: none;
   }
 
+  /* Shrink social icons so all 4 + theme toggle fit in the nav bar */
+  .top-right-nav {
+    gap: 0.5rem;
+  }
+
+  .top-right-nav .header__social svg {
+    width: 15px;
+    height: 15px;
+  }
+
   .hero__headline {
     margin-block-end: var(--space-md);
   }
@@ -2497,10 +2507,6 @@ footer .wrapper {
 
   .contact__headline {
     margin-block-end: var(--space-lg);
-  }
-
-  .top-right-nav .header__social[href="#"] {
-    display: none;
   }
 }
 
