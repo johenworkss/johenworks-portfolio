@@ -68,7 +68,7 @@ class ThemeToggle {
       el.style.backgroundColor = '';
     });
     
-    console.log('🎨 Theme switched to:', newTheme);
+    console.log('Theme switched to:', newTheme);
     
     // Remove transition class after animation (400ms to match CSS)
     setTimeout(() => {
