@@ -1320,9 +1320,26 @@ h1 > span {
 
 /* ABOUT SECTION */
 
+/* Reset fullpage-section__content so .about owns the full height */
+.fullpage-section--about .fullpage-section__content {
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-block: 0;
+  padding-inline: 0;
+}
+
 .about {
-  padding-block: var(--space-2xl);
   width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--bg-body);
+  padding-block: calc(var(--header-clearance) + var(--safe-top)) calc(var(--safe-bottom));
+  padding-inline: max(var(--section-x), var(--safe-left)) max(calc(var(--section-x) + 2.5rem), var(--safe-right));
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .about__wrapper {
@@ -1330,7 +1347,7 @@ h1 > span {
 }
 
 .about__headline {
-  margin-block-end: var(--space-xl);
+  margin-block-end: var(--space-md);
   text-align: center;
   font-size: clamp(2rem, 4vw, 3rem);
 }
@@ -1343,7 +1360,7 @@ h1 > span {
 .about__grid {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   max-width: 60rem;
   margin-inline: auto;
 }
@@ -1528,22 +1545,14 @@ h1 > span {
 /* Responsive styles for new sections */
 
 @media (min-width: 37.5em) {
-  .about {
-    padding-block: 80px;
-  }
-
   .experience {
     padding-block: 80px;
   }
 }
 
 @media (min-width: 62.5em) {
-  .about {
-    padding-block: 100px;
-  }
-
   .about__headline {
-    margin-block-end: 60px;
+    margin-block-end: var(--space-md);
   }
 
   .experience {
@@ -2519,7 +2528,6 @@ footer .wrapper {
     margin-block-end: var(--space-2xl);
   }
 
-  .about,
   .experience {
     padding-block: var(--space-3xl);
   }
@@ -2541,6 +2549,12 @@ footer .wrapper {
 
   /* Contact section manages its own padding — reset the generic override */
   .fullpage-section--contact .fullpage-section__content {
+    padding-block: 0;
+    padding-inline: 0;
+  }
+
+  /* About section manages its own padding — reset the generic override */
+  .fullpage-section--about .fullpage-section__content {
     padding-block: 0;
     padding-inline: 0;
   }
