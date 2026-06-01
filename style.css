@@ -1364,6 +1364,7 @@ h1 > span {
     min-height: 100dvh;
     justify-content: flex-start;
     padding-block: calc(var(--header-clearance) + var(--safe-top) + var(--space-md)) calc(var(--space-xl) + var(--safe-bottom));
+    padding-inline: max(var(--section-x), var(--safe-left)) max(var(--section-x), var(--safe-right));
   }
 
   .about__card {
