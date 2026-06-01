@@ -1556,7 +1556,7 @@ h1 > span {
   transform: translateZ(0);
   backface-visibility: hidden;
   overflow: hidden;
-  padding-top: var(--space-3xl);
+  padding-top: var(--space-md);
 }
 
 .skills__wrapper {
@@ -1572,7 +1572,7 @@ h1 > span {
 .skills__headline {
   grid-column: 1 / -1;
   text-align: center;
-  margin-block-end: var(--space-lg);
+  margin-block-end: var(--space-sm);
   height: auto;
   font-size: clamp(2rem, 4vw, 3rem);
 }
@@ -2535,6 +2535,6 @@ footer .wrapper {
   }
 
   .skills__headline {
-    margin-block-end: var(--space-2xl);
+    margin-block-end: var(--space-sm);
   }
 }
