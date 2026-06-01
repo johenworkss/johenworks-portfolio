@@ -2077,7 +2077,7 @@ h1 > span {
 @media (min-width: 62.5em) {
   .projects__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-lg) var(--space-md);
+    gap: var(--space-lg) var(--space-xl);
   }
 
   .projects__image {
@@ -2203,7 +2203,8 @@ h1 > span {
 @media (min-width: 62.5em) {
   .contact__wrapper {
     gap: 60px;
-    padding-block: var(--space-md) var(--space-sm);
+    padding-block: var(--space-3xl) var(--space-sm);
+    align-items: start;
   }
 }
 
@@ -2627,6 +2628,11 @@ footer .wrapper {
   .fullpage-section--contact .fullpage-section__content {
     padding-block: 0;
     padding-inline: 0;
+  }
+
+  .contact {
+    justify-content: center;
+    padding-block-start: calc(var(--header-clearance) + var(--safe-top) + 3rem);
   }
 
   /* About section manages its own padding — reset the generic override */
