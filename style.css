@@ -1221,20 +1221,14 @@ h1 > span {
   .hero__image {
     position: relative;
     width: min(42vw, 340px);
-    height: auto;
-    border-radius: 50%;
-    top: auto;
-    left: auto;
-    translate: none;
-  }
-    width: min(42vw, 340px);
     height: min(42vw, 340px);
     max-width: 340px;
     max-height: 340px;
     object-fit: cover;
+    border-radius: 50%;
+    top: auto;
     left: auto;
-    right: 0;
-    translate: 0;
+    translate: none;
   }
 
   .hero__rings {
