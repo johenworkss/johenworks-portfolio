@@ -1699,6 +1699,13 @@ h1 > span {
   }
 }
 
+/* Mobile: equal horizontal padding for projects section */
+@media (max-width: 37.4375em) {
+  .fullpage-section--projects .fullpage-section__content {
+    padding-inline: max(var(--section-x), var(--safe-left)) max(var(--section-x), var(--safe-right));
+  }
+}
+
 /* PROJECTS */
 
 .projects__wrap.projects {
