@@ -339,12 +339,10 @@ class FormHandler {
     const content = document.createElement('div');
     content.className = 'toast__content';
 
-    if (type === 'error') {
-      const icon = document.createElement('span');
-      icon.className = 'toast__icon';
-      icon.textContent = '✕';
-      content.appendChild(icon);
-    }
+    const icon = document.createElement('span');
+    icon.className = 'toast__icon';
+    icon.textContent = type === 'success' ? '✓' : '✕';
+    content.appendChild(icon);
 
     const msg = document.createElement('span');
     msg.className = 'toast__message';

@@ -240,12 +240,15 @@ html.theme-transitioning footer .wrapper {
   transform: translate(-50%, -50%) scale(0.8);
   background: var(--toast-bg);
   backdrop-filter: blur(10px);
-  padding: 20px 32px;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  padding: 16px 20px;
+  border-radius: 14px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
   z-index: 9999;
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  max-width: 280px;
+  width: 90vw;
+  text-align: center;
 }
 
 .toast--show {
@@ -263,19 +266,21 @@ html.theme-transitioning footer .wrapper {
 
 .toast__content {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .toast__icon {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.25rem;
+  flex-shrink: 0;
 }
 
 .toast--success .toast__icon {
@@ -291,7 +296,42 @@ html.theme-transitioning footer .wrapper {
 .toast__message {
   color: var(--text1);
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media (min-width: 37.5em) {
+  .toast {
+    padding: 22px 30px;
+    max-width: 360px;
+  }
+  
+  .toast__message {
+    font-size: 0.9375rem;
+  }
+  
+  .toast__icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+  
+  .toast__content {
+    gap: 14px;
+  }
+}
+
+@media (min-width: 62.5em) {
+  .toast {
+    padding: 26px 36px;
+    max-width: 420px;
+  }
+  
+  .toast__icon {
+    width: 56px;
+    height: 56px;
+    font-size: 1.75rem;
+  }
 }
 
 /* LOTTIE ANIMATION OVERLAY */
