@@ -235,7 +235,7 @@ class FormHandler {
           animation.destroy();
           overlay.classList.add('lottie-overlay--hide');
           setTimeout(() => { overlay.remove(); resolve(); }, 300);
-        }, 4000);
+        }, 3000);
       } else {
         overlay.remove();
         resolve();
