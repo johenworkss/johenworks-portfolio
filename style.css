@@ -557,6 +557,17 @@ button.loading::before {
   background-color: var(--bg-body);
 }
 
+@media (min-width: 37.5em) {
+  .fullpage-section {
+    overflow-y: hidden;
+  }
+  
+  .fullpage-section--about,
+  .fullpage-section--contact {
+    overflow-y: auto;
+  }
+}
+
 .fullpage-section.active {
   opacity: 1;
   visibility: visible;
@@ -1629,9 +1640,21 @@ h1 > span {
 }
 
 @media (min-width: 62.5em) {
+  .experience {
+    padding-block: 70px;
+  }
+  
+  .experience__headline {
+    margin-block-end: var(--space-lg);
+  }
+  
+  .experience__grid {
+    gap: var(--space-md);
+  }
+  
   .experience__item {
-    gap: 32px;
-    padding: 24px 28px;
+    gap: 24px;
+    padding: 20px 24px;
   }
 }
 
@@ -1710,17 +1733,26 @@ h1 > span {
 
 @media (min-width: 37.5em) {
   .experience {
-    padding-block: 80px;
+    padding-block: 60px;
+  }
+  
+  .experience__headline {
+    margin-block-end: var(--space-lg);
+  }
+  
+  .experience__grid {
+    gap: var(--space-md);
+  }
+  
+  .experience__item {
+    gap: 16px;
+    padding: 16px 20px;
   }
 }
 
 @media (min-width: 62.5em) {
   .about__headline {
     margin-block-end: var(--space-md);
-  }
-
-  .experience {
-    padding-block: 100px;
   }
 }
 
