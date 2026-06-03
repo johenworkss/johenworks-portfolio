@@ -1406,7 +1406,7 @@ h1 > span {
     min-height: 100dvh;
     justify-content: flex-start;
     padding-block: calc(var(--header-clearance) + var(--safe-top) + var(--space-md)) calc(var(--space-xl) + var(--safe-bottom));
-    padding-inline: max(var(--section-x), var(--safe-left)) max(var(--section-x), var(--safe-right));
+    padding-inline: max(var(--space-lg), var(--safe-left)) max(var(--space-lg), var(--safe-right));
   }
 
   .about__card {
@@ -1420,12 +1420,12 @@ h1 > span {
   }
 
   .about__grid {
-    gap: var(--space-sm);
+    gap: var(--space-md);
   }
 
   .about__headline {
     font-size: clamp(1.5rem, 6vw, 2rem);
-    margin-block-end: var(--space-sm);
+    margin-block-end: var(--space-md);
   }
 }
 
@@ -1517,7 +1517,24 @@ h1 > span {
 /* Mobile: equal horizontal padding, allow scroll if content overflows */
 @media (max-width: 37.4375em) {
   .fullpage-section--experience .fullpage-section__content {
-    padding-inline: max(var(--section-x), var(--safe-left)) max(var(--section-x), var(--safe-right));
+    padding-inline: max(var(--space-lg), var(--safe-left)) max(var(--space-lg), var(--safe-right));
+  }
+  
+  .experience {
+    padding-block: var(--space-lg);
+  }
+  
+  .experience__grid {
+    gap: var(--space-md);
+  }
+  
+  .experience__item {
+    padding: var(--space-md);
+  }
+  
+  .experience__headline {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    margin-block-end: var(--space-md);
   }
 }
 
@@ -1751,13 +1768,29 @@ h1 > span {
   }
 }
 
-/* Mobile: equal horizontal padding for projects section */
 @media (max-width: 37.4375em) {
-  .fullpage-section--projects .fullpage-section__content {
+  .skills {
+    padding-block: var(--space-md);
+  }
+  
+  .skills__headline {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  
+  .skills__wrapper {
+    gap: var(--space-sm);
+  }
+}
+
+/* Mobile: equal horizontal padding for projects & skills section */
+@media (max-width: 37.4375em) {
+  .fullpage-section--projects .fullpage-section__content,
+  .fullpage-section--skills .fullpage-section__content {
     padding-inline: max(var(--space-lg), var(--safe-left)) max(var(--space-lg), var(--safe-right));
   }
   
-  .projects {
+  .projects,
+  .skills {
     padding-block: var(--space-md);
   }
 }
@@ -2540,6 +2573,21 @@ h1 > span {
 
   .contact__rings {
     translate: -40%;
+  }
+}
+
+@media (max-width: 37.4375em) {
+  .contact {
+    padding-inline: max(var(--space-lg), var(--safe-left)) max(var(--space-lg), var(--safe-right));
+  }
+  
+  .contact__headline {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  
+  .contact__control input,
+  .contact__control textarea {
+    padding: 14px 18px;
   }
 }
 
