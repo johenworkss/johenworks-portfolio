@@ -1380,7 +1380,7 @@ h1 > span {
   align-items: stretch;
   justify-content: flex-start;
   padding-block: 0;
-  padding-inline: 0;
+  padding-inline: max(var(--section-x), var(--safe-left)) max(calc(var(--section-x) + 2.5rem), var(--safe-right));
 }
 
 .about {
@@ -1392,40 +1392,46 @@ h1 > span {
   justify-content: center;
   background-color: var(--bg-body);
   padding-block: calc(var(--header-clearance) + var(--safe-top) + var(--space-md)) calc(var(--space-lg) + var(--safe-bottom));
-  padding-inline: max(var(--section-x), var(--safe-left)) max(calc(var(--section-x) + 2.5rem), var(--safe-right));
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-/* Mobile: let content scroll, don't clip cards */
+/* Mobile: even smaller About Me cards with more side padding */
 @media (max-width: 37.4375em) {
+  .fullpage-section--about .fullpage-section__content {
+    padding-inline: max(2.5rem, var(--safe-left)) max(2.5rem, var(--safe-right));
+  }
+  
   .about {
     height: auto;
     min-height: 100vh;
     min-height: 100dvh;
     justify-content: flex-start;
-    padding-block: calc(var(--header-clearance) + var(--safe-top) + var(--space-md)) calc(var(--space-xl) + var(--safe-bottom));
-    padding-inline: max(var(--space-lg), var(--safe-left)) max(var(--space-lg), var(--safe-right));
+    padding-block: var(--space-md);
   }
 
   .about__card {
-    padding: var(--space-md);
-    gap: 10px;
+    padding: 8px 12px;
+    gap: 5px;
   }
 
   .about__card p {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.8rem;
+    line-height: 1.3;
   }
 
   .about__grid {
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
 
   .about__headline {
-    font-size: clamp(1.5rem, 6vw, 2rem);
-    margin-block-end: var(--space-md);
+    font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+    margin-block-end: var(--space-sm);
+  }
+  
+  .about__subheading {
+    font-size: 0.9rem;
   }
 }
 
@@ -1455,27 +1461,27 @@ h1 > span {
 .about__card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   border-radius: 10px;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 @media (min-width: 37.5em) {
   .about__card {
     flex-direction: row;
     align-items: flex-start;
-    gap: 24px;
-    padding: 24px 28px;
+    gap: 20px;
+    padding: 20px 24px;
   }
 }
 
 @media (min-width: 62.5em) {
   .about__card {
-    gap: 40px;
-    padding: 28px 32px;
+    gap: 32px;
+    padding: 24px 28px;
   }
 }
 
@@ -1514,27 +1520,50 @@ h1 > span {
   flex: 1;
 }
 
-/* Mobile: equal horizontal padding, allow scroll if content overflows */
+/* Base padding for Experience section */
+.fullpage-section--experience .fullpage-section__content {
+  padding-inline: max(var(--section-x), var(--safe-left)) max(calc(var(--section-x) + 2.5rem), var(--safe-right));
+}
+
+/* Mobile: even smaller Experience cards with more side padding */
 @media (max-width: 37.4375em) {
   .fullpage-section--experience .fullpage-section__content {
-    padding-inline: max(var(--space-lg), var(--safe-left)) max(var(--space-lg), var(--safe-right));
+    padding-inline: max(2.5rem, var(--safe-left)) max(2.5rem, var(--safe-right));
   }
   
   .experience {
-    padding-block: var(--space-lg);
+    padding-block: var(--space-md);
   }
   
   .experience__grid {
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
   
   .experience__item {
-    padding: var(--space-md);
+    padding: 8px 12px;
+    gap: 5px;
   }
   
   .experience__headline {
-    font-size: clamp(1.5rem, 6vw, 2rem);
-    margin-block-end: var(--space-md);
+    font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+    margin-block-end: var(--space-sm);
+  }
+  
+  .experience__job-title {
+    font-size: 0.9rem;
+  }
+  
+  .experience__company {
+    font-size: 0.85rem;
+  }
+  
+  .experience__duration {
+    font-size: 0.8rem;
+  }
+  
+  .experience__description {
+    font-size: 0.8rem;
+    line-height: 1.3;
   }
 }
 
@@ -1568,27 +1597,27 @@ h1 > span {
 .experience__item {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  padding: 24px;
+  padding: var(--space-md);
   border-radius: 10px;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 @media (min-width: 37.5em) {
   .experience__item {
     flex-direction: row;
     align-items: flex-start;
-    gap: 24px;
-    padding: 24px 28px;
+    gap: 20px;
+    padding: 20px 24px;
   }
 }
 
 @media (min-width: 62.5em) {
   .experience__item {
-    gap: 40px;
-    padding: 28px 32px;
+    gap: 32px;
+    padding: 24px 28px;
   }
 }
 
